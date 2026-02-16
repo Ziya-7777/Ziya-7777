@@ -2,46 +2,109 @@
      xmlns="http://www.w3.org/2000/svg">
 
 <defs>
-  <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+
+  <!-- Dark Storm Sky -->
+  <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
     <stop offset="0%" stop-color="#000000"/>
-    <stop offset="100%" stop-color="#1a0033"/>
+    <stop offset="100%" stop-color="#14002b"/>
   </linearGradient>
 
-  <filter id="glow">
+  <!-- Electric Glow -->
+  <filter id="electricGlow">
     <feGaussianBlur stdDeviation="4" result="blur"/>
     <feMerge>
       <feMergeNode in="blur"/>
       <feMergeNode in="SourceGraphic"/>
     </feMerge>
   </filter>
+
 </defs>
 
-<rect width="1200" height="500" fill="url(#bg)" rx="20"/>
+<!-- Background -->
+<rect width="1200" height="500" fill="url(#sky)" rx="25"/>
 
-<!-- Lightning -->
-<polyline points="300,50 340,150 310,150 360,260"
+<!-- Moving Starfield -->
+<circle cx="200" cy="0" r="2" fill="white">
+  <animate attributeName="cy" values="0;500" dur="7s" repeatCount="indefinite"/>
+</circle>
+
+<circle cx="600" cy="0" r="2" fill="white">
+  <animate attributeName="cy" values="0;500" dur="9s" repeatCount="indefinite"/>
+</circle>
+
+<circle cx="1000" cy="0" r="2" fill="white">
+  <animate attributeName="cy" values="0;500" dur="6s" repeatCount="indefinite"/>
+</circle>
+
+<!-- Rain -->
+<g stroke="#66ccff" stroke-width="2">
+  <line x1="300" y1="0" x2="300" y2="20">
+    <animate attributeName="y1" values="0;500" dur="1s" repeatCount="indefinite"/>
+    <animate attributeName="y2" values="20;520" dur="1s" repeatCount="indefinite"/>
+  </line>
+  <line x1="800" y1="0" x2="800" y2="20">
+    <animate attributeName="y1" values="0;500" dur="1.2s" repeatCount="indefinite"/>
+    <animate attributeName="y2" values="20;520" dur="1.2s" repeatCount="indefinite"/>
+  </line>
+</g>
+
+<!-- Lightning Flash 1 -->
+<polyline points="250,60 290,150 260,150 310,260"
           stroke="#00ffff"
           stroke-width="4"
           fill="none"
-          filter="url(#glow)">
+          filter="url(#electricGlow)">
   <animate attributeName="opacity"
            values="0;1;0"
            dur="2s"
            repeatCount="indefinite"/>
 </polyline>
 
-<!-- Floating Text -->
+<!-- Lightning Flash 2 -->
+<polyline points="900,80 940,170 910,170 960,280"
+          stroke="#ff00ff"
+          stroke-width="4"
+          fill="none"
+          filter="url(#electricGlow)">
+  <animate attributeName="opacity"
+           values="0;1;0"
+           dur="3s"
+           repeatCount="indefinite"/>
+</polyline>
+
+<!-- Floating Name -->
 <text x="600" y="260"
       text-anchor="middle"
-      font-size="60"
+      font-size="70"
       fill="#00ffff"
       font-family="Verdana"
-      filter="url(#glow)">
+      filter="url(#electricGlow)">
+
   ZIYA
+
   <animate attributeName="fill"
            values="#00ffff;#ff00ff;#00ffff"
            dur="2s"
            repeatCount="indefinite"/>
+
+  <animateTransform attributeName="transform"
+                    type="translate"
+                    values="0,0;0,-10;0,0"
+                    dur="4s"
+                    repeatCount="indefinite"/>
+
 </text>
+
+<!-- Neon Border Pulse -->
+<rect x="5" y="5" width="1190" height="490"
+      fill="none"
+      stroke="#ff00ff"
+      stroke-width="3"
+      rx="25">
+  <animate attributeName="stroke"
+           values="#ff00ff;#00ffff;#ff00ff"
+           dur="3s"
+           repeatCount="indefinite"/>
+</rect>
 
 </svg>
